@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Add any additional CSS or stylesheets here -->
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the Dashboard</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>User Dashboard</h2>
+        <ul>
+            {% for username, user_info in users.items() %}
+                <li>{{ username }} - Status: {{ user_info['status'] }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Dashboard App</p>
+    </footer>
+
+    <!-- Add any additional scripts or JavaScript files here -->
+</body>
+
+</html>

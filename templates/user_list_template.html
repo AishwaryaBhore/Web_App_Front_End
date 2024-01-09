@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .user-list {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user span {
+            margin-right: 10px;
+        }
+
+        .indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Use inline style for background color based on user status */
+        .active {
+            background-color: green;
+        }
+
+        .inactive {
+            background-color: red;
+        }
+
+        /* Style for the div containing the button */
+        div.button-container {
+            text-align: center; /* Align content to the left */
+            margin-top: 20px;
+        }
+
+        /* Style for the button */
+        button.data-extraction-btn {
+            padding: 10px 20px;
+            background-color: #27ae60; /* Green color for the button */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from the anchor */
+            display: inline-block;
+        }
+
+        button.data-extraction-btn:hover {
+            background-color: #219d54; /* Darker green color on hover */
+        }
+
+    </style>
+
+    <title>User Status</title>
+</head>
+
+<body>
+
+<div class="user-list">
+    <h3>Activity log of users</h3>
+    {% for user in users %}
+        <div class="user">
+            <span>{{ user['username'] }}</span>
+            <div class="indicator {{ 'active' if user['username'] in logged_in_users else 'inactive' }}"></div>
+            <h6>{{ 'active' if user['username'] in logged_in_users else 'inactive' }}</h6>
+        </div>
+    {% endfor %}
+</div>
+<div class="button-container">
+    <form action="/runscript" method="post">
+        <button type="submit" class="data-extraction-btn">Data Extraction Form</button>
+    </form>
+</div>
+
+</body>
+
+</html>
